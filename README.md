@@ -1,6 +1,6 @@
 # AI DataOps Incident Agent
 
-A local-first incident investigation app for data pipeline failures and metric anomalies.
+An incident investigation app for data pipeline failures and metric anomalies.
 
 ## Repository Structure
 
