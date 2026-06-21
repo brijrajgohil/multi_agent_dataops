@@ -5,14 +5,7 @@ A local-first incident investigation app for data pipeline failures and metric a
 ## Repository Structure
 
 ```text
-
-│   ├── logs/           # Pipeline log files
-│   ├── metadata/       # Freshness, lineage, schema metadata
-│   ├── runbooks/       # Markdown troubleshooting runbooks
-│   ├── traces/         # JSONL workflow traces
-│   └── warehouse/      # DuckDB warehouse file
-├── docs/
-│   └── steps.md        # Phase-by-phase implementation plan
+implementation plan
 ├── src/
 │   ├── agents/         # Triage, investigation, resolution agents
 │   ├── app/            # FastAPI app
