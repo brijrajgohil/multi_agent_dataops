@@ -5,9 +5,7 @@ A local-first incident investigation app for data pipeline failures and metric a
 ## Repository Structure
 
 ```text
-.
-├── data/
-│   ├── evals/          # Golden incidents and eval reports
+
 │   ├── logs/           # Pipeline log files
 │   ├── metadata/       # Freshness, lineage, schema metadata
 │   ├── runbooks/       # Markdown troubleshooting runbooks
@@ -15,8 +13,6 @@ A local-first incident investigation app for data pipeline failures and metric a
 │   └── warehouse/      # DuckDB warehouse file
 ├── docs/
 │   └── steps.md        # Phase-by-phase implementation plan
-├── scripts/
-│   └── create_mock_data.py
 ├── src/
 │   ├── agents/         # Triage, investigation, resolution agents
 │   ├── app/            # FastAPI app
@@ -53,18 +49,6 @@ Copy the sample configuration:
 
 ```bash
 cp .env.example .env
-```
-
-## Prepare Local Data
-
-```bash
-python scripts/create_mock_data.py
-```
-
-This writes the DuckDB file used by the SQL tools:
-
-```text
-data/warehouse/sample_data.duckdb
 ```
 
 ## Run FastAPI
@@ -129,54 +113,11 @@ python -m src.tools.mcp_server
 
 The process waits for MCP `stdio` messages. Stop it with `Ctrl+C`.
 
-## Run Tests
-
-Full suite:
-
-```bash
-python -m pytest
-```
-
-Targeted suites:
-
-```bash
-python -m pytest tests/test_tools.py
-python -m pytest tests/test_workflow_graph.py
-python -m pytest tests/test_evals.py
-```
-
-
-## Run Offline Evals
-
-```bash
-python -m src.evals.run_evals
-```
-
-Direct script execution:
-
-```bash
-python src/evals/run_evals.py
-```
-
-Input:
-
-```text
-data/evals/golden_incidents.jsonl
-```
-
-Output:
-
-```text
-data/evals/eval_report.json
-```
 
 ## Command Summary
 
 ```bash
 python -m pip install -r requirements.txt
-python scripts/create_mock_data.py
 python -m uvicorn src.app.main:app --host 127.0.0.1 --port 8000
 DATAOPS_API_BASE_URL=http://127.0.0.1:8000 python -m streamlit run streamlit_app/app.py
-python -m src.evals.run_evals
-python -m pytest
 ```
