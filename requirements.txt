@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+streamlit
+pydantic
+python-dotenv
+duckdb
+pandas
+langgraph
+ollama
+mcp[cli]
+pytest
+rich
